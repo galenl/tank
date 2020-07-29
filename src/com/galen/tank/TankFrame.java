@@ -15,8 +15,10 @@ public class TankFrame extends Frame {
 
     Bullet b = new Bullet(300, 300, Dir.DOWN);
 
+    private static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
+
     public TankFrame() {
-        this.setSize(800, 600);
+        this.setSize(GAME_WIDTH, GAME_HEIGHT);
         this.setResizable(false);
         this.setTitle("tank war");
         this.setVisible(true);
