@@ -2,30 +2,29 @@ package com.galen.tank;
 
 import java.awt.*;
 
-public class Tank {
-    private int x;
-    private int y;
+public class Bullet {
+    private static final int SPEED = 1;
+    private static final int WIDTH = 10;
+    private static final int HEIGHT = 10;
+    private int x, y;
     private Dir dir;
-    private static final int SPEED = 10;
-    private static final int WIDTH = 50;
-    private static final int HEIGHT = 50;
 
-    private boolean moving = false;
 
-    public Tank(int x, int y, Dir dir) {
+    public Bullet(int x, int y, Dir dir) {
         this.x = x;
         this.y = y;
         this.dir = dir;
     }
 
     public void paint(Graphics g) {
-        g.fillRect(x, y, WIDTH, HEIGHT);
+        Color c = g.getColor();
+        g.setColor(Color.RED);
+        g.fillOval(x, y, WIDTH, HEIGHT);
+        g.setColor(c);
         move();
     }
 
     public void move() {
-        if (!moving) return;
-
         switch (dir) {
             case LEFT:
                 x -= SPEED;
@@ -42,21 +41,5 @@ public class Tank {
             default:
                 break;
         }
-    }
-
-    public void setDir(Dir dir) {
-        this.dir = dir;
-    }
-
-    public Dir getDir() {
-        return dir;
-    }
-
-    public boolean isMoving() {
-        return moving;
-    }
-
-    public void setMoving(boolean moving) {
-        this.moving = moving;
     }
 }
