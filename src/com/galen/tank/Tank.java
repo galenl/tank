@@ -7,7 +7,7 @@ public class Tank {
     private int x;
     private int y;
     private Dir dir;
-    private static final int SPEED = 10;
+    private static final int SPEED = 1;
     private boolean live = true;
     public static final int WIDTH = ResourceMgr.tankD.getWidth();
     public static final int HEIGHT = ResourceMgr.tankD.getHeight();
