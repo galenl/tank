@@ -1,6 +1,7 @@
 package com.galen.tank;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Tank {
     private int x;
@@ -11,14 +12,18 @@ public class Tank {
     public static final int WIDTH = ResourceMgr.tankD.getWidth();
     public static final int HEIGHT = ResourceMgr.tankD.getHeight();
 
-     private TankFrame tankFrame;
+    private TankFrame tankFrame;
 
     private boolean moving = false;
 
-    public Tank(int x, int y, Dir dir, TankFrame tankFrame) {
+    private Group group = Group.BAD;
+    private Random random = new Random();
+
+    public Tank(int x, int y, Dir dir, Group group,  TankFrame tankFrame) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.group = group;
         this.tankFrame = tankFrame;
     }
 
@@ -62,6 +67,10 @@ public class Tank {
             default:
                 break;
         }
+
+        if (random.nextInt(10) > 8) {
+            this.fire();
+        }
     }
 
     public void setDir(Dir dir) {
@@ -83,7 +92,15 @@ public class Tank {
     public void fire() {
         int bX = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
         int bY = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
-        tankFrame.bullets.add(new Bullet(bX, bY, this.dir, tankFrame));
+        tankFrame.bullets.add(new Bullet(bX, bY, this.dir, this.group, tankFrame));
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     public int getX() {
