@@ -64,4 +64,18 @@ public class Bullet {
             this.live = false;
         }
     }
+
+    public void collideWith(Tank tank) {
+        Rectangle rect = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
+        Rectangle rect2 = new Rectangle(tank.getX(), tank.getY(), Tank.WIDTH, Tank.HEIGHT);
+
+        if (rect.intersects(rect2)) {
+            tank.die();
+            this.die();
+        }
+    }
+
+    private void die() {
+        live = false;
+    }
 }
